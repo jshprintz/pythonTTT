@@ -56,9 +56,35 @@ def disp_message():
 
 # Checks to see if a player won
 def check_win():
+    count = 0
     global board, turn, win
-    pass
 
+    if board['a1'] == board['b1'] and board['a1'] == board['c1'] and board['a1'] == turn:
+        win = True
+    elif board['a2'] == board['b2'] and board['a2'] == board['c2'] and board['a2'] == turn:
+        win = True
+    elif board['a3'] == board['b3'] and board['a3'] == board['c3'] and board['a3'] == turn:
+        win = True
+    elif board['a1'] == board['a2'] and board['a1'] == board['a3'] and board['a1'] == turn:
+        win = True
+    elif board['b1'] == board['b2'] and board['b1'] == board['b3'] and board['b1'] == turn:
+        win = True
+    elif board['c1'] == board['c2'] and board['c1'] == board['c3'] and board['c1'] == turn:
+        win = True
+    elif board['a1'] == board['b2'] and board['a1'] == board['c3'] and board['a1'] == turn:
+        win = True
+    elif board['a3'] == board['b2'] and board['a3'] == board['c1'] and board['a3'] == turn:
+        win = True
+    else:
+        for square in board:
+            if board[square] == '   ':
+                count += 1
+        
+        if count > 0:
+            change_turn()
+        else:
+            print('TIE GAME!')
+            win = True
 
 # Inputs the move from the current player
 def get_move():
@@ -67,7 +93,7 @@ def get_move():
     move = input()
     move.lower()
 
-
+# Checks the move for irregularties
 def check_move():
     count = 0
     global board, turn, move
@@ -77,7 +103,6 @@ def check_move():
         if move == square and board[square] == '   ':
             board[square] = f' {turn} '
             check_win()
-            change_turn()
         elif move == square and board[square] != '   ':
             print('That square has already been picked! Please pick again.')
         else:
@@ -94,5 +119,3 @@ while win == False:
     get_move()
     check_move()
     disp_board()
-    # Temporary to keep it from looping
-    win = True
