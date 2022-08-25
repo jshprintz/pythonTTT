@@ -108,6 +108,7 @@ def check_win():
             change_turn()
         else:
             print('TIE GAME!')
+            disp_board()
             win = True
 
 # Inputs the move from the current player
