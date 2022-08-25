@@ -54,35 +54,51 @@ def disp_message():
     ----------------------
     ''')
 
+def big_winner():
+    global turn, win
+
+    win = True
+    print(f'Player {turn} WON!')
+    print('Would you like to play again (Y/N)? ')
+    play_again = input()
+    play_again = play_again.lower()
+    if play_again == 'y':
+        init_game()
+    elif play_again != 'n':
+        print('Not valid response!')
+        big_winner()
+
+
+
 # Checks to see if a player won
 def check_win():
     count = 0
-    global board, turn, win
+    global board, win
 
     if board['a1'] == board['b1'] and board['a1'] == board['c1'] and board['a1'] != '   ':
-        win = True
-        print(f'Player {turn} WON!')
+        disp_board()
+        big_winner()
     elif board['a2'] == board['b2'] and board['a2'] == board['c2'] and board['a2'] != '   ':
-        win = True
-        print(f'Player {turn} WON!')
+        disp_board()
+        big_winner()
     elif board['a3'] == board['b3'] and board['a3'] == board['c3'] and board['a3'] != '   ':
-        win = True
-        print(f'Player {turn} WON!')
+        disp_board()
+        big_winner()
     elif board['a1'] == board['a2'] and board['a1'] == board['a3'] and board['a1'] != '   ':
-        win = True
-        print(f'Player {turn} WON!')
+        disp_board()
+        big_winner()
     elif board['b1'] == board['b2'] and board['b1'] == board['b3'] and board['b1'] != '   ':
-        win = True
-        print(f'Player {turn} WON!')
+        disp_board()
+        big_winner()
     elif board['c1'] == board['c2'] and board['c1'] == board['c3'] and board['c1'] != '   ':
-        win = True
-        print(f'Player {turn} WON!')
+        disp_board()
+        big_winner()
     elif board['a1'] == board['b2'] and board['a1'] == board['c3'] and board['a1'] != '   ':
-        win = True
-        print(f'Player {turn} WON!')
+        disp_board()
+        big_winner()
     elif board['a3'] == board['b2'] and board['a3'] == board['c1'] and board['a3'] != '   ':
-        win = True
-        print(f'Player {turn} WON!')
+        disp_board()
+        big_winner()
     else:
         for square in board:
             if board[square] == '   ':
