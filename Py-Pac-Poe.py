@@ -54,11 +54,19 @@ def disp_message():
     ----------------------
     ''')
 
+# A player won
 def big_winner():
     global turn, win
 
     win = True
     print(f'Player {turn} WON!')
+
+    another_game()
+
+# Play again function
+def another_game():
+    global win
+
     print('Would you like to play again (Y/N)? ')
     play_again = input()
     play_again = play_again.lower()
@@ -66,8 +74,9 @@ def big_winner():
         init_game()
     elif play_again != 'n':
         print('Not valid response!')
-        big_winner()
-
+        another_game()
+    else:
+        win = True
 
 
 # Checks to see if a player won
@@ -109,7 +118,7 @@ def check_win():
         else:
             print('TIE GAME!')
             disp_board()
-            win = True
+            another_game()
 
 # Inputs the move from the current player
 def get_move():
@@ -142,5 +151,8 @@ init_game()
 
 while win == False:
     get_move()
-    check_move()
-    disp_board()
+    if move == 'q':
+        win = True
+    else:
+        check_move()
+        disp_board()
