@@ -16,7 +16,7 @@ def init_game():
         'a2': '   ', 'b2': '   ', 'c2': '   ',
         'a3': '   ', 'b3': '   ', 'c3': '   ',
     }
-    disp_board()
+    logic_loop()
 
 #AAP, before being prompted for a move,
 #  I want to see the board printed out in the console, 
@@ -63,6 +63,7 @@ def big_winner():
 
     another_game()
 
+
 # Play again function
 def another_game():
     global win
@@ -85,28 +86,20 @@ def check_win():
     global board, win
 
     if board['a1'] == board['b1'] and board['a1'] == board['c1'] and board['a1'] != '   ':
-        disp_board()
         big_winner()
     elif board['a2'] == board['b2'] and board['a2'] == board['c2'] and board['a2'] != '   ':
-        disp_board()
         big_winner()
     elif board['a3'] == board['b3'] and board['a3'] == board['c3'] and board['a3'] != '   ':
-        disp_board()
         big_winner()
     elif board['a1'] == board['a2'] and board['a1'] == board['a3'] and board['a1'] != '   ':
-        disp_board()
         big_winner()
     elif board['b1'] == board['b2'] and board['b1'] == board['b3'] and board['b1'] != '   ':
-        disp_board()
         big_winner()
     elif board['c1'] == board['c2'] and board['c1'] == board['c3'] and board['c1'] != '   ':
-        disp_board()
         big_winner()
     elif board['a1'] == board['b2'] and board['a1'] == board['c3'] and board['a1'] != '   ':
-        disp_board()
         big_winner()
     elif board['a3'] == board['b2'] and board['a3'] == board['c1'] and board['a3'] != '   ':
-        disp_board()
         big_winner()
     else:
         for square in board:
@@ -117,7 +110,6 @@ def check_win():
             change_turn()
         else:
             print('TIE GAME!')
-            disp_board()
             another_game()
 
 # Inputs the move from the current player
@@ -136,6 +128,7 @@ def check_move():
     for square in board:
         if move == square and board[square] == '   ':
             board[square] = f' {turn} '
+            disp_board()
             check_win()
         elif move == square and board[square] != '   ':
             print('That square has already been picked! Please pick again.')
@@ -145,14 +138,18 @@ def check_move():
     if count == 9:
         print('Not a valid square! Please pick again.')
 
+# logic loop while game is not yet won
+def logic_loop():
+    global win
+    disp_board()
+    while win == False:
+        get_move()
+        if move == 'q':
+            win = True
+        else:
+            check_move()
 
 # Start game
 init_game()
 
-while win == False:
-    get_move()
-    if move == 'q':
-        win = True
-    else:
-        check_move()
-        disp_board()
+
