@@ -4,6 +4,7 @@
 turn = 'X'
 board = {}
 win = False
+move = None
 
 # Initialize game
 def init_game():
@@ -60,10 +61,30 @@ def check_win():
 
 
 # Inputs the move from the current player
-
 def get_move():
-    global board, turn
-    pass
+    global board, turn, move
+    print(f'''Player {turn}'s Move (example B2):''')
+    move = input()
+    move.lower()
+
+
+def check_move():
+    count = 0
+    global board, turn, move
+
+    # Compares the players pick to the current board
+    for square in board:
+        if move == square and board[square] == '   ':
+            board[square] = f' {turn} '
+            check_win()
+            change_turn()
+        elif move == square and board[square] != '   ':
+            print('That square has already been picked! Please pick again.')
+        else:
+            count += 1
+    # Not a valid pick
+    if count == 9:
+        print('Not a valid square! Please pick again.')
 
 
 # Start game
@@ -71,8 +92,7 @@ init_game()
 
 while win == False:
     get_move()
+    check_move()
     disp_board()
-    check_win()
-    change_turn()
     # Temporary to keep it from looping
     win = True
