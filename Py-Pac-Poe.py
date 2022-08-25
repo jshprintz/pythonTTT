@@ -59,22 +59,30 @@ def check_win():
     count = 0
     global board, turn, win
 
-    if board['a1'] == board['b1'] and board['a1'] == board['c1'] and board['a1'] == turn:
+    if board['a1'] == board['b1'] and board['a1'] == board['c1'] and board['a1'] != '   ':
         win = True
-    elif board['a2'] == board['b2'] and board['a2'] == board['c2'] and board['a2'] == turn:
+        print(f'Player {turn} WON!')
+    elif board['a2'] == board['b2'] and board['a2'] == board['c2'] and board['a2'] != '   ':
         win = True
-    elif board['a3'] == board['b3'] and board['a3'] == board['c3'] and board['a3'] == turn:
+        print(f'Player {turn} WON!')
+    elif board['a3'] == board['b3'] and board['a3'] == board['c3'] and board['a3'] != '   ':
         win = True
-    elif board['a1'] == board['a2'] and board['a1'] == board['a3'] and board['a1'] == turn:
+        print(f'Player {turn} WON!')
+    elif board['a1'] == board['a2'] and board['a1'] == board['a3'] and board['a1'] != '   ':
         win = True
-    elif board['b1'] == board['b2'] and board['b1'] == board['b3'] and board['b1'] == turn:
+        print(f'Player {turn} WON!')
+    elif board['b1'] == board['b2'] and board['b1'] == board['b3'] and board['b1'] != '   ':
         win = True
-    elif board['c1'] == board['c2'] and board['c1'] == board['c3'] and board['c1'] == turn:
+        print(f'Player {turn} WON!')
+    elif board['c1'] == board['c2'] and board['c1'] == board['c3'] and board['c1'] != '   ':
         win = True
-    elif board['a1'] == board['b2'] and board['a1'] == board['c3'] and board['a1'] == turn:
+        print(f'Player {turn} WON!')
+    elif board['a1'] == board['b2'] and board['a1'] == board['c3'] and board['a1'] != '   ':
         win = True
-    elif board['a3'] == board['b2'] and board['a3'] == board['c1'] and board['a3'] == turn:
+        print(f'Player {turn} WON!')
+    elif board['a3'] == board['b2'] and board['a3'] == board['c1'] and board['a3'] != '   ':
         win = True
+        print(f'Player {turn} WON!')
     else:
         for square in board:
             if board[square] == '   ':
@@ -91,7 +99,7 @@ def get_move():
     global board, turn, move
     print(f'''Player {turn}'s Move (example B2):''')
     move = input()
-    move.lower()
+    move = move.lower()
 
 # Checks the move for irregularties
 def check_move():
